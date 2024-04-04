@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    public static void FindNonRepeatingChars(string s)
+    {
+        var charCount = new Dictionary<char, int>();
+
+        foreach (char c in s)
+        {
+            charCount[c] = charCount.ContainsKey(c) ? charCount[c] + 1 : 1;
+        }
+
+        Console.WriteLine("Non-repeating characters:");
+        foreach (char c in s)
+        {
+            if (charCount[c] == 1)
+            {
+                Console.WriteLine(c);
+            }
+        }
+    }
+
+    static void Main()
+    {
+        string s = "hello world";
+        FindNonRepeatingChars(s);
+    }
+}
