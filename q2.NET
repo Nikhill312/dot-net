@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    public static int LengthOfLongestSubstring(string s)
+    {
+        int maxLength = 0;
+        int left = 0;
+        var charMap = new Dictionary<char, int>();
+
+        for (int right = 0; right < s.Length; right++)
+        {
+            if (charMap.ContainsKey(s[right]))
+            {
+                left = Math.Max(left, charMap[s[right]] + 1);
+            }
+            charMap[s[right]] = right;
+            maxLength = Math.Max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+
+    static void Main()
+    {
+        string s = "abcabcbb";
+        Console.WriteLine("Output: " + LengthOfLongestSubstring(s));
+    }
+}
